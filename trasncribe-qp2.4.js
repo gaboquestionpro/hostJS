@@ -176,7 +176,7 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
 //AWS - Transcribe Stuff
 
 //const AWS = require('aws-sdk');
-//const fs = require('fs');
+const fs = require('fs');
 //const { blob } = require('stream/consumers');
 
 // Set up the AWS SDK with your credentials and region
