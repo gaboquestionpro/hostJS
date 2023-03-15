@@ -10,7 +10,7 @@ Records the user and returns the transcription on a text question.
 
 */
 
-
+/*
 var qtnId = "QuestionSection_120820657";
 
 const selector = document.createElement("select");
@@ -33,7 +33,7 @@ $("#" + qtnId + " span")[0].appendChild(paragraph);
 $("#" + qtnId + " span")[0].appendChild(btnGrabar);
 $("#" + qtnId + " span")[0].appendChild(btnDetener);
 
-debugger;
+debugger; */
 
 const tieneSoporteUserMedia = () => !!(navigator.mediaDevices.getUserMedia);
 
