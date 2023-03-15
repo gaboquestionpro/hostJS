@@ -139,7 +139,7 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
                             //a.download = "qp-record.webm";
                             console.log("Archivo generado");
                             // Hacer click en el enlace
-                            a.click();
+                            //a.click();
                             // Y remover el objeto
                             window.URL.revokeObjectURL(urlParaDescargar);
                         });
