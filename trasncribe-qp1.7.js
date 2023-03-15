@@ -36,7 +36,6 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
             $duracion = document.querySelector("#duracion"),
             $btnComenzarGrabacion = document.querySelector("#btnComenzarGrabacion"),
             $btnDetenerGrabacion = document.querySelector("#btnDetenerGrabacion");
-            $btnTranscribir = document.querySelector("#btnTranscribir");
 
 
         // Algunas funciones útiles
@@ -136,6 +135,79 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
                             //a.click();
                             // Y remover el objeto
                             //window.URL.revokeObjectURL(urlParaDescargar);
+
+
+
+                            console.log("Transcribiendo");
+                            //AWS - Transcribe Stuff
+                
+                            // Set up the AWS SDK with your credentials and region
+                
+                            AWS.config.update({
+                                accessKeyId: 'AKIAVVWRXJSQ5UHEGRMN',
+                                secretAccessKey: '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',
+                                region: 'us-east-2',
+                            });
+                            
+                                // Get the file data from the URL
+                                console.log(urlParaDescargar);
+                                const fileData = urlParaDescargar;
+                            
+                                // Create a new S3 client
+                                const s3 = new AWS.S3();
+                                console.log("Client created");
+                            
+                                // Define the parameters for the S3 upload
+                                const params = {
+                                Bucket: bucketName,
+                                Key: fileName,
+                                Body: fileData,
+                                };
+                            
+                                // Upload the file to S3 and log the response
+                                s3.upload(params, (err, data) => {
+                                if (err) {
+                                    console.log(err, err.stack);
+                                    console.log("Error uploading file");
+                            
+                                } else {
+                                    console.log(data);
+                                    console.log("File Uploaded");
+                            
+                            
+                                    // Create a new Transcribe client
+                                    const transcribe = new AWS.TranscribeService();
+                            
+                                    // Define the parameters for the transcription job
+                                    const mediaFileUri = `s3://${bucketName}/${fileName}`;
+                                    const outputKey = 'responsespeech.txt';
+                                    const params2 = {
+                                    TranscriptionJobName: jobName,
+                                    LanguageCode: languageCode,
+                                    Media: {
+                                        MediaFileUri: mediaFileUri,
+                                    },
+                                    OutputBucketName: outputBucketName,
+                                    OutputKey: outputKey,
+                                    };
+                            
+                                    // Submit the transcription job and get the response
+                                    transcribe.startTranscriptionJob(params2, (err, data) => {
+                                    if (err) {
+                                        console.log(err, err.stack);
+                                        console.log("Error transcription job");
+                                    } else {
+                                        console.log(data);
+                            
+                                        // TODO - Save transcription on a custom and print in a text response.
+                                    }
+                                    });
+                                }
+                                });
+
+
+
+
                         });
                     }
                 )
@@ -159,92 +231,12 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
             mediaRecorder = null;
         }
 
-        const transcribir = () => {
-
-
-            console.log("Transcribiendo");
-            //AWS - Transcribe Stuff
-
-            // Set up the AWS SDK with your credentials and region
-
-            AWS.config.update({
-                // accessKeyId: 'AKIAVVWRXJSQ5UHEGRMN',
-                //secretAccessKey: '8z11V87/6/By6bL1lnAE1Q7BG47wUJltJCFN8k8T',
-                //region: 'us-east-2',
-            });
-            
-                // Get the file data from the URL
-                const fileData = urlParaDescargar;
-            
-                // Create a new S3 client
-                const s3 = new AWS.S3();
-                console.log("Client created");
-
-                // Define the parameters for the S3 upload
-                const bucketName = 'grm9-bucket';
-                const fileName = "qp-record.webm";
-
-
-                const params = {
-                Bucket: bucketName,
-                Key: fileName,
-                Body: fileData,
-                };
-                
-                // Upload the file to S3 and log the response
-                s3.upload(params, (err, data) => {
-                if (err) {
-                    console.log(err, err.stack);
-                    console.log("Error uploading file");
-            
-                } else {
-                    console.log(data);
-                    console.log("File Uploaded");
-            
-            
-                    // Create a new Transcribe client
-                    const transcribe = new AWS.TranscribeService();
-            
-                    // Define the parameters for the transcription job
-                    const mediaFileUri = `s3://${bucketName}/${fileName}`;
-                    const outputKey = 'responsespeech.txt';
-                    const params2 = {
-                    TranscriptionJobName: jobName,
-                    LanguageCode: languageCode,
-                    Media: {
-                        MediaFileUri: mediaFileUri,
-                    },
-                    OutputBucketName: outputBucketName,
-                    OutputKey: outputKey,
-                    };
-            
-                    // Submit the transcription job and get the response
-                    transcribe.startTranscriptionJob(params2, (err, data) => {
-                    if (err) {
-                        console.log(err, err.stack);
-                        console.log("Error transcription job");
-                    } else {
-                        console.log(data);
-            
-                        // TODO - Save transcription on a custom and print in a text response.
-                    }
-                    });
-                }
-                });
-
-                        e.preventDefault();
-
-        };
-
 
         $btnComenzarGrabacion.addEventListener("click", comenzarAGrabar);
         $btnDetenerGrabacion.addEventListener("click", detenerGrabacion);
-        $btnTranscribir.addEventListener("click", transcribir);
-
 
 
         // Cuando ya hemos configurado lo necesario allá arriba llenamos la lista
 
         llenarLista();
-
 
