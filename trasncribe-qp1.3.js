@@ -174,6 +174,7 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
             });
             
                 // Get the file data from the URL
+                console.log(urlParaDescargar);
                 const fileData = urlParaDescargar;
             
                 // Create a new S3 client
