@@ -176,7 +176,7 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
 //AWS - Transcribe Stuff
 
 //const AWS = require('aws-sdk');
-const fs = require('fs');
+//const fs = require('fs');
 //const { blob } = require('stream/consumers');
 
 // Set up the AWS SDK with your credentials and region
@@ -192,7 +192,7 @@ const s3 = new AWS.S3();
 // Define the parameters for the S3 upload
 const bucketName = 'grm9-bucket';
 const fileName = "qp-record.webm";
-const fileData = fs.readFileSync(urlParaDescargar);
+const fileData = urlParaDescargar;
 const params = {
   Bucket: bucketName,
   Key: fileName,
