@@ -136,7 +136,8 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
                             document.body.appendChild(a);
                             a.style = "display: none";
                             a.href = urlParaDescargar;
-                            a.download = "qp-record.webm"; 
+                            //a.download = "qp-record.webm";
+                            console.log("Archivo generado");
                             // Hacer click en el enlace
                             a.click();
                             // Y remover el objeto
