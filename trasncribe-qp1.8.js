@@ -136,8 +136,6 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
                             // Y remover el objeto
                             //window.URL.revokeObjectURL(urlParaDescargar);
 
-
-
                             console.log("Transcribiendo");
                             //AWS - Transcribe Stuff
                 
@@ -152,6 +150,18 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
                                 // Get the file data from the URL
                                 console.log(urlParaDescargar);
                                 const fileData = urlParaDescargar;
+
+                                //Input
+
+                                // Define the parameters for the S3 upload
+                                const bucketName = 'grm9-bucket';
+                                const fileName = "qp-record.webm";
+
+
+                                //Output
+                                const jobName = 'QP-TranscriptionJob';
+                                const languageCode = 'es-US';
+                                const outputBucketName = 'output-recordsqp';
                             
                                 // Create a new S3 client
                                 const s3 = new AWS.S3();
@@ -204,9 +214,6 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
                                     });
                                 }
                                 });
-
-
-
 
                         });
                     }
