@@ -33,6 +33,8 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
             $duracion = document.querySelector("#duracion"),
             $btnComenzarGrabacion = document.querySelector("#btnComenzarGrabacion"),
             $btnDetenerGrabacion = document.querySelector("#btnDetenerGrabacion");
+            $btnTranscribir = document.querySelector("#btnTranscribir");
+
 
         // Algunas funciones útiles
         const limpiarSelect = () => {
