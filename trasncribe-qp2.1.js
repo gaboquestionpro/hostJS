@@ -175,7 +175,7 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
 
 //AWS - Transcribe Stuff
 
-const AWS = require('aws-sdk');
+//const AWS = require('aws-sdk');
 const fs = require('fs');
 const { blob } = require('stream/consumers');
 
