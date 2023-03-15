@@ -1,38 +1,27 @@
 /*
  Transcribe Script - v0.1:
-
 Records the user and returns the transcription on a text question.
-
  - Why this thing exists?
-
     We wanted to combine audio input + sentiment analysis 
-
-
 */
 
 /*
 var qtnId = "QuestionSection_120820657";
-
 const selector = document.createElement("select");
 selector.name = "listaDeDispositivos";
 selector.id = "listaDeDispositivos";
-
 const paragraph = document.createElement("p");
 paragraph.id = "duracion";
-
 const btnGrabar = document.createElement("button");
 btnGrabar.id = "btnComenzarGrabacion";
 btnGrabar.innerHTML = "Grabar";
-
 const btnDetener = document.createElement("button");
 btnDetener.id = "btnDetenerGrabacion";
 btnDetener.innerHTML = "Detener y Guardar";
-
 $("#" + qtnId + " span")[0].appendChild(selector);
 $("#" + qtnId + " span")[0].appendChild(paragraph);
 $("#" + qtnId + " span")[0].appendChild(btnGrabar);
 $("#" + qtnId + " span")[0].appendChild(btnDetener);
-
 debugger; */
 
 const tieneSoporteUserMedia = () => !!(navigator.mediaDevices.getUserMedia);
@@ -169,6 +158,7 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
         $btnComenzarGrabacion.addEventListener("click", comenzarAGrabar);
         $btnDetenerGrabacion.addEventListener("click", detenerGrabacion);
 
+
         // Cuando ya hemos configurado lo necesario allá arriba llenamos la lista
 
         llenarLista();
@@ -186,7 +176,6 @@ AWS.config.update({
 /*
 // Create a new S3 client
 const s3 = new S3();
-
 // Define the parameters for the S3 upload
 const bucketName = 'grm9-bucket';
 const fileName = "qp-record.webm";
@@ -196,7 +185,6 @@ const params = {
   Key: fileName,
   Body: fileData,
 };
-
 // Upload the file to S3 and log the response
 s3.upload(params, (err, data) => {
   if (err) {
@@ -205,10 +193,8 @@ s3.upload(params, (err, data) => {
     console.log(data);
   }
 });
-
 // Create a new Transcribe client
 const transcribe = new TranscribeService();
-
 // Define the parameters for the transcription job
 const jobName = 'QP-TranscriptionJob';
 const mediaFileUri = 's3://grm9-bucket/qp-record.webm';
@@ -224,16 +210,13 @@ const params2 = {
   OutputBucketName: outputBucketName,
   OutputKey: outputKey,
 };
-
 // Submit the transcription job and get the response
 transcribe.startTranscriptionJob(params2, (err, data) => {
   if (err) {
     console.log(err, err.stack);
   } else {
-
     //print transcription
     console.log(data);
-
     //TODO - Save transcription on a custom and print in a text response.
   }
 });*/
@@ -300,3 +283,5 @@ function transcript() {
     }
   });
 }
+
+$btnTranscribir.addEventListener("click", transcript);
