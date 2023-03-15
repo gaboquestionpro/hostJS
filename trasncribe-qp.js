@@ -11,7 +11,7 @@ Records the user and returns the transcription on a text question.
 */
 
 
-var qtnId = "rec-input";
+var qtnId = "QuestionSection_120820657";
 
 const selector = document.createElement("select");
 selector.name = "listaDeDispositivos";
