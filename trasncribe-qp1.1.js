@@ -157,6 +157,8 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
 
         $btnComenzarGrabacion.addEventListener("click", comenzarAGrabar);
         $btnDetenerGrabacion.addEventListener("click", detenerGrabacion);
+        $btnTranscribir.addEventListener("click", transcript);
+
 
 
         // Cuando ya hemos configurado lo necesario allá arriba llenamos la lista
@@ -284,4 +286,3 @@ function transcript() {
   });
 }
 
-$btnTranscribir.addEventListener("click", transcript);
