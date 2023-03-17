@@ -140,12 +140,12 @@ const $listaDeDispositivos = document.querySelector("#listaDeDispositivos"),
                             //AWS - Transcribe Stuff
                 
                             // Set up the AWS SDK with your credentials and region
-                
+                            /*
                             AWS.config.update({
-                                accessKeyId: 'AKIAVVWRXJSQ5UHEGRMN',
-                                secretAccessKey: '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',
-                                region: 'us-east-2',
-                            });
+                                accessKeyId: '',
+                                secretAccessKey: '',
+                                region: '',
+                            });*/
                             
                                 // Get the file data from the URL
                                 console.log(urlParaDescargar);
